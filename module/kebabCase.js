@@ -13,6 +13,22 @@
   ));
   })(this,function(){
     return function( value ){
-        return '';
+      if( Object.prototype.toString.call( value ) === '[object String]' ){
+        var result = value.replaceAll(/\s+/ig,'-').split('');
+        var vtr = '';
+
+        for( var i = 0; i < result.length ; i++ ){
+          if( result[i] === result[i].toUpperCase() ){
+              vtr += '-'+result[i].toLowerCase();
+          }else{
+              vtr += result[i];
+          }
+
+        }
+
+        return vtr;
+      }
+
+    return '';
     }
   })
