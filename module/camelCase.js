@@ -13,6 +13,34 @@
   ));
   })(this,function(){
     return function( value ){
-        return '';
+      if( Object.prototype.toString.call( value ) === '[object String]' ){
+
+        var chars = value.toLowerCase().split('');
+
+        for( var i = 0; i < chars.length; i ++){
+          if( ['-','_'].includes( chars[i] ) ){
+              chars[i] = ' ';
+          }
+        }
+
+        var values = chars.join('').split(' ');
+
+        for( var i = 0; i < values.length ; i++ ){
+          if( values[i] !== '' ){
+
+            values[i] = i === 0 ? values[i].trim() :  function( val , index ){
+                var chars = val.split('');
+                chars[0] = chars[0].toUpperCase();
+                return chars.join('');
+            }(values[i])
+
+          }
+        }
+
+        return values.join('');
+
+      }
+
+      return '';
     }
   })
